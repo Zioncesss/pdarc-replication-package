@@ -162,8 +162,9 @@ def generate_latex_table(results: dict, scenario: str) -> str:
         marker = SIGNIFICANCE_MARKERS[(r["significant"], r["large_effect"])]
         ci_str = f"[{r['pdarc_ci95'][0]:.1f}, {r['pdarc_ci95'][1]:.1f}]"
         p_str = f"{r['p_value']:.4f}" if r["p_value"] >= 0.0001 else "$<$0.0001"
+        bl_tex = bl.replace("-", r"--").replace("_", r"\_")
         rows.append(
-            f"{bl.replace('-', r'--').replace('_', r'\_')} & "
+            f"{bl_tex} & "
             f"{r['baseline_mean']:.1f}{marker} & {ci_str} & "
             f"{p_str} & {r['cliffs_delta']:.3f} & {r['effect_size']} \\\\"
         )
