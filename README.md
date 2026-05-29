@@ -1,6 +1,7 @@
 # P-DARC JSS Replication Package
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20437846.svg)](https://doi.org/10.5281/zenodo.20437846)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
 ![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue)
 
@@ -9,6 +10,8 @@ This repository contains the replication package for the manuscript:
 **P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity**
 
 Repository: https://github.com/Zioncesss/pdarc-jss
+
+Archived release: https://doi.org/10.5281/zenodo.20437846
 
 ## Contents
 
@@ -118,11 +121,10 @@ If you use this code or data, please cite the associated manuscript and this rep
   title={P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
   journal={Journal of Systems and Software},
   year={2026},
+  doi={10.5281/zenodo.20437846},
   note={Replication package available at: https://github.com/Zioncesss/pdarc-jss}
 }
 ```
-
-After a Zenodo release is created, add the DOI to this README and `CITATION.cff`.
 
 ## License
 

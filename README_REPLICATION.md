@@ -54,4 +54,4 @@ python generate_latex_tables.py
 - The simulator uses paired common random numbers for controlled algorithm comparison.
 - The HTTP experiment is interpreted as transport-boundary ranking evidence, not as a production throughput benchmark.
 - Public repository: https://github.com/Zioncesss/pdarc-jss
-- A Zenodo DOI is still recommended for an immutable archived release.
+- Archived release DOI: https://doi.org/10.5281/zenodo.20437846

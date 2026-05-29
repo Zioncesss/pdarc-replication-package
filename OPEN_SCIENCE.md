@@ -6,6 +6,8 @@ This repository is the public replication package for the manuscript:
 
 Repository: https://github.com/Zioncesss/pdarc-jss
 
+Archived release: https://doi.org/10.5281/zenodo.20437846
+
 ## Contents
 
 - Node.js discrete-event simulator and controller implementations.
@@ -37,9 +39,9 @@ The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
 
 ## Archival DOI
 
-A Zenodo release DOI is still recommended before final JSS submission or revision.
-After creating the GitHub release and Zenodo archive, update this file, `CITATION.cff`,
-and the manuscript Data Availability statement with the DOI.
+The release archive is available at Zenodo:
+
+https://doi.org/10.5281/zenodo.20437846
 
 ## License
 
