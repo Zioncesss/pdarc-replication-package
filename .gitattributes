@@ -1,0 +1,23 @@
+# Auto line-ending normalization for cross-platform compatibility
+* text=auto
+
+# JavaScript files
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+
+# Python files
+*.py text eol=lf
+*.pyw text eol=lf
+
+# Data and results
+*.csv text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.tex text eol=lf
+
+# Binaries
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary

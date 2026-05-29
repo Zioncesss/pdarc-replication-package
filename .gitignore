@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+
+# Logs and debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Setup and template files (not needed in repository)
+GITHUB_SETUP.md
+OPEN_SCIENCE.md
+README_REPLICATION.md

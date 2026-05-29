@@ -1,0 +1,42 @@
+{
+  "experiment": "JSS 30-repetition main study",
+  "platform": "Node.js SED discrete-step simulator (paper-aligned v2)",
+  "runtime": "v24.15.0",
+  "timestamp": "2026-05-26T13:24:19.992Z",
+  "repeats": 30,
+  "base_seed": 1000,
+  "crn_note": "Same repeatIndex uses same Poisson seed across algorithms (CRN)",
+  "T_step_ms": 15,
+  "D_ref_s": 0.2,
+  "capacity": 1000,
+  "duration_s": 120,
+  "warmup_s": 10,
+  "N_min": 1,
+  "N_max": 45,
+  "scenarios": [
+    "steady",
+    "step_burst",
+    "pulse_burst",
+    "interference_light",
+    "interference_heavy",
+    "erratic"
+  ],
+  "algorithms": [
+    "Fixed Backpressure",
+    "AIMD",
+    "PIE",
+    "P-DARC",
+    "P-DARC-noI"
+  ],
+  "pdarc_params": {
+    "alpha": 0.2,
+    "beta": 1,
+    "gamma": 0.2,
+    "gamma_ref": 0.03,
+    "theta": 0.9,
+    "gamma_I": 0.3,
+    "rho": 0.9,
+    "gamma_Q": 0.15,
+    "rho_Q": 0.85
+  }
+}

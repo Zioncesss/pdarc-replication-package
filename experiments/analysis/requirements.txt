@@ -1,0 +1,4 @@
+# JSS statistical analysis dependencies
+scipy>=1.10.0
+numpy>=1.24.0
+pandas>=2.0.0   # optional: for richer DataFrame operations in generate_latex_tables.py

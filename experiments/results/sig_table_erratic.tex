@@ -1,0 +1,17 @@
+\begin{table}[!t]
+\centering
+\caption{P-DARC vs.\ baselines under \texttt{erratic} (30 reps; $\dag\dag$ = $p<0.05$ and large Cliff's $\delta$)}
+\label{tab:sig_erratic}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Algorithm} & \textbf{$p_{99}$ mean (ms)} & \textbf{95\% CI} & \textbf{$p$-value} & \textbf{Cliff's $\delta$} & \textbf{Effect} \\
+\midrule
+\pdarc & 185.7 & [185.6, 185.9] & — & — & (reference) \\
+Fixed Backpressure & 351.3$^{\dag\dag}$ & [185.6, 185.9] & $<$0.0001 & 1.000 & large \\
+AIMD & 294.4$^{\dag\dag}$ & [185.6, 185.9] & $<$0.0001 & 1.000 & large \\
+PIE & 208.5$^{\dag\dag}$ & [185.6, 185.9] & $<$0.0001 & 1.000 & large \\
+GradientDescent & 376.9$^{\dag\dag}$ & [185.6, 185.9] & $<$0.0001 & 1.000 & large \\
+\bottomrule
+\end{tabular}
+\end{table}

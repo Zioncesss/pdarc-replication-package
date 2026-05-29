@@ -1,0 +1,75 @@
+JSS Statistical Analysis Report
+============================================================
+Data: D:\project\AI\paper\JSS\experiments\results\results_jss_30rep.json
+Scenarios: ['steady', 'step_burst', 'pulse_burst', 'interference_light', 'interference_heavy', 'erratic']
+Repetitions per config: 30 reps
+
+
+────────────────────────────────────────────────────────────
+Scenario: steady
+  P-DARC p99: 19.8 ± 0.4 ms  CI95=[19.7, 20.0]
+  Fixed Backpressure     p99=15.0ms  Δ=-4.8ms (-32.2%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  AIMD                   p99=19.8ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+  PIE                    p99=15.0ms  Δ=-4.8ms (-32.2%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  GradientDescent        p99=19.8ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+  P-DARC-noI             p99=19.8ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+
+────────────────────────────────────────────────────────────
+Scenario: step_burst
+  P-DARC p99: 213.0 ± 0.0 ms  CI95=[213.0, 213.0]
+  Fixed Backpressure     p99=15.0ms  Δ=-198.0ms (-1320.0%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  AIMD                   p99=193.2ms  Δ=-19.8ms (-10.3%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  PIE                    p99=15.0ms  Δ=-198.0ms (-1320.0%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  GradientDescent        p99=292.4ms  Δ=+79.4ms (+27.2%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  P-DARC-noI             p99=213.0ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+
+────────────────────────────────────────────────────────────
+Scenario: pulse_burst
+  P-DARC p99: 213.0 ± 0.0 ms  CI95=[213.0, 213.0]
+  Fixed Backpressure     p99=15.0ms  Δ=-198.0ms (-1320.0%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  AIMD                   p99=192.2ms  Δ=-20.8ms (-10.8%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  PIE                    p99=15.0ms  Δ=-198.0ms (-1320.0%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  GradientDescent        p99=366.0ms  Δ=+153.0ms (+41.8%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  P-DARC-noI             p99=213.0ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+
+────────────────────────────────────────────────────────────
+Scenario: interference_light
+  P-DARC p99: 178.0 ± 23.6 ms  CI95=[169.6, 186.4]
+  Fixed Backpressure     p99=50.8ms  Δ=-127.2ms (-250.6%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  AIMD                   p99=165.0ms  Δ=-13.0ms (-7.9%)  U=239  p=0.0019  [[SIGNIFICANT]]  Cliff's δ=-0.469 [MEDIUM]
+  PIE                    p99=50.8ms  Δ=-127.2ms (-250.6%)  U=0  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=-1.000 [LARGE]
+  GradientDescent        p99=213.2ms  Δ=+35.2ms (+16.5%)  U=694  p=0.0003  [[SIGNIFICANT]]  Cliff's δ=0.542 [LARGE]
+  P-DARC-noI             p99=178.0ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+
+────────────────────────────────────────────────────────────
+Scenario: interference_heavy
+  P-DARC p99: 209.5 ± 0.0 ms  CI95=[209.5, 209.5]
+  Fixed Backpressure     p99=451.6ms  Δ=+242.1ms (+53.6%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  AIMD                   p99=354.7ms  Δ=+145.2ms (+40.9%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  PIE                    p99=379.7ms  Δ=+170.2ms (+44.8%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  GradientDescent        p99=314.2ms  Δ=+104.7ms (+33.3%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  P-DARC-noI             p99=209.5ms  Δ=+0.0ms (+0.0%)  U=450  p=1.0000  [[not significant]]  Cliff's δ=0.000 [NEGLIGIBLE]
+
+────────────────────────────────────────────────────────────
+Scenario: erratic
+  P-DARC p99: 185.7 ± 0.4 ms  CI95=[185.6, 185.9]
+  Fixed Backpressure     p99=351.3ms  Δ=+165.6ms (+47.1%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  AIMD                   p99=294.4ms  Δ=+108.6ms (+36.9%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  PIE                    p99=208.5ms  Δ=+22.8ms (+10.9%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  GradientDescent        p99=376.9ms  Δ=+191.2ms (+50.7%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+  P-DARC-noI             p99=207.9ms  Δ=+22.2ms (+10.7%)  U=900  p=0.0000  [[SIGNIFICANT]]  Cliff's δ=1.000 [LARGE]
+
+════════════════════════════════════════════════════════════
+RQ1 PRIMARY COMPARISON: interference_heavy
+JSS requirement: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)
+
+  Fixed Backpressure: [SUPPORTED]
+    p=0.0000, δ=1.000 (large)
+  AIMD: [SUPPORTED]
+    p=0.0000, δ=1.000 (large)
+  PIE: [SUPPORTED]
+    p=0.0000, δ=1.000 (large)
+  GradientDescent: [SUPPORTED]
+    p=0.0000, δ=1.000 (large)
+  P-DARC-noI: [NEEDS REVISION]
+    p=1.0000, δ=0.000 (negligible)

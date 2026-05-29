@@ -1,0 +1,20 @@
+\begin{table}[!t]
+\centering
+\caption{Performance under \texttt{interference\_heavy} ($\iota=0.50$, $t\in[40,80)$\,s). 30 independent repetitions. $^\dag$ $p<0.05$; $^{\dag\dag}$ $p<0.05$ and Cliff's $|\delta|\geq0.474$.}
+\label{tab:main_heavy_jss}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Algorithm} & \textbf{$p_{99}$ (ms)} & \textbf{$L_{\max}$} & \textbf{Throughput} & \textbf{Rej.\,(\%)} & \textbf{Rec.\,(s)} \\
+\midrule
+\textbf{Fixed BP} & 451.6 $\pm$ 3.9$^{\dag\dag}$ & 207 & 663.2 & 17.1 & 0.78 \\
+\textbf{AIMD} & 354.7 $\pm$ 3.9$^{\dag\dag}$ & 189 & 673.8 & 15.7 & 0.21 \\
+\textbf{PIE} & 379.7 $\pm$ 17.2$^{\dag\dag}$ & 200 & 661.7 & 17.3 & 0.20 \\
+\textbf{GradientDescent} & 314.2 $\pm$ 10.1 & 244 & 679.1 & 15.1 & 0.35 \\
+\midrule
+\textbf{\pdarc} & 209.5 $\pm$ 0.0 & 91 & 679.0 & 15.1 & 0.38 \\
+\textbf{\pdarc-noI} & 209.5 $\pm$ 0.0 & 92 & 679.1 & 15.1 & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,19 @@
+{
+  "name": "pdarc-jss-experiments",
+  "version": "1.0.0",
+  "description": "P-DARC JSS experiment platform — 30 reps, Mann-Whitney U ready",
+  "type": "module",
+  "scripts": {
+    "smoke":      "node smoke_test_jss.js",
+    "test":       "node run_experiments_jss.js",
+    "experiment": "node run_experiments_jss.js",
+    "gd":         "node run_gd_baseline.js",
+    "ablation":   "node run_ablation_jss.js",
+    "new-scenarios": "node run_new_scenarios.js",
+    "http":       "node ../http/run_http_exp.js",
+    "all":        "node smoke_test_jss.js && node run_experiments_jss.js && node run_gd_baseline.js && node run_ablation_jss.js && node run_new_scenarios.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
