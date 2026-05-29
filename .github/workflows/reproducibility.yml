@@ -1,0 +1,42 @@
+name: Reproducibility smoke
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Node.js simulator smoke test
+        working-directory: experiments/nodejs
+        run: npm run smoke
+
+      - name: Install Python analysis dependencies
+        run: python -m pip install -r experiments/analysis/requirements.txt
+
+      - name: Python analysis syntax check
+        run: |
+          python -m py_compile experiments/analysis/statistical_tests.py
+          python -m py_compile experiments/analysis/generate_latex_tables.py
+
+      - name: Regenerate statistical outputs
+        working-directory: experiments/analysis
+        run: |
+          python statistical_tests.py
+          python generate_latex_tables.py

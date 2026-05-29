@@ -1,6 +1,6 @@
 JSS Statistical Analysis Report
 ============================================================
-Data: D:\project\AI\paper\JSS\experiments\results\results_jss_30rep.json
+Data: experiments/results/results_jss_30rep.json
 Scenarios: ['steady', 'step_burst', 'pulse_burst', 'interference_light', 'interference_heavy', 'erratic']
 Repetitions per config: 30 reps
 

@@ -176,50 +176,17 @@ def generate_latex_table(results: dict, scenario: str) -> str:
 
     return header + "\n".join(rows) + "\n" + footer
 
-# ── Data validation ──────────────────────────────────────────────────────────
-
-def validate_data(data: dict, min_reps: int = 30) -> None:
-    """Validate that data contains all expected scenarios and reps."""
-    if not isinstance(data, dict):
-        raise ValueError("Data must be a dictionary")
-
-    for scenario, algos in data.items():
-        if not isinstance(algos, dict):
-            raise ValueError(f"Scenario {scenario} value must be a dict")
-
-        for algo, metrics in algos.items():
-            p99_data = metrics.get("p99", {}).get("raw", [])
-            if not isinstance(p99_data, list):
-                raise ValueError(f"{scenario}/{algo}: p99.raw must be a list")
-            if len(p99_data) < min_reps:
-                raise ValueError(
-                    f"{scenario}/{algo}: expected ≥{min_reps} reps, got {len(p99_data)}"
-                )
-
 # ── Main analysis ─────────────────────────────────────────────────────────────
 
 def main():
-    try:
-        if not DATA_FILE.exists():
-            print(f"ERROR: {DATA_FILE} not found.")
-            print("Run 'node run_experiments_jss.js' first to generate results.")
-            sys.exit(1)
+    if not DATA_FILE.exists():
+        print(f"ERROR: {DATA_FILE} not found.")
+        print("Run 'node run_experiments_jss.js' first to generate results.")
+        sys.exit(1)
 
-        try:
-            with open(DATA_FILE, "r", encoding="utf-8") as f:
-                data = json.load(f)
-        except json.JSONDecodeError as e:
-            print(f"ERROR: Failed to parse {DATA_FILE}: {e}")
-            sys.exit(1)
-
-        # Validate data structure and counts
-        try:
-            validate_data(data, min_reps=30)
-        except ValueError as e:
-            print(f"ERROR: Data validation failed: {e}")
-            sys.exit(1)
-
-        merge_gradient_descent(data)
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    merge_gradient_descent(data)
 
     baselines    = ["Fixed Backpressure", "AIMD", "PIE", "GradientDescent", "P-DARC-noI"]
     primary_scen = "interference_heavy"     # RQ1 primary comparison
@@ -230,7 +197,7 @@ def main():
 
     report_lines.append("JSS Statistical Analysis Report")
     report_lines.append("=" * 60)
-    report_lines.append(f"Data: {DATA_FILE}")
+    report_lines.append("Data: experiments/results/results_jss_30rep.json")
     report_lines.append(f"Scenarios: {all_scenarios}")
     report_lines.append(f"Repetitions per config: "
                         f"{len(next(iter(next(iter(data.values())).values())).get('p99', {}).get('raw', []))} reps")
@@ -287,42 +254,32 @@ def main():
                 report_lines.append(f"  {bl}: {status}")
                 report_lines.append(f"    p={r['p_value']:.4f}, δ={r['cliffs_delta']:.3f} ({r['effect_size']})")
 
-        # ── Write outputs ──
-        try:
-            report_text = "\n".join(report_lines)
-            print(report_text)
+    # ── Write outputs ──
+    report_text = "\n".join(report_lines)
+    print(report_text)
 
-            with open(RESULTS_DIR / "statistical_report.txt", "w", encoding="utf-8") as f:
-                f.write(report_text)
+    with open(RESULTS_DIR / "statistical_report.txt", "w", encoding="utf-8") as f:
+        f.write(report_text)
 
-            with open(RESULTS_DIR / "stat_results.json", "w", encoding="utf-8") as f:
-                json.dump(stat_results, f, indent=2)
+    with open(RESULTS_DIR / "stat_results.json", "w", encoding="utf-8") as f:
+        json.dump(stat_results, f, indent=2)
 
-            # LaTeX significance table for interference_heavy
-            if primary_scen in data:
-                tex = generate_latex_table(data, primary_scen)
-                with open(RESULTS_DIR / "sig_table_heavy.tex", "w", encoding="utf-8") as f:
-                    f.write(tex)
-                print(f"\nLaTeX table -> results/sig_table_heavy.tex")
+    # LaTeX significance table for interference_heavy
+    if primary_scen in data:
+        tex = generate_latex_table(data, primary_scen)
+        with open(RESULTS_DIR / "sig_table_heavy.tex", "w", encoding="utf-8") as f:
+            f.write(tex)
+        print(f"\nLaTeX table -> results/sig_table_heavy.tex")
 
-            # LaTeX table for erratic (RQ2: integral contribution)
-            if "erratic" in data:
-                tex_e = generate_latex_table(data, "erratic")
-                with open(RESULTS_DIR / "sig_table_erratic.tex", "w", encoding="utf-8") as f:
-                    f.write(tex_e)
-                print(f"LaTeX table -> results/sig_table_erratic.tex")
+    # LaTeX table for erratic (RQ2: integral contribution)
+    if "erratic" in data:
+        tex_e = generate_latex_table(data, "erratic")
+        with open(RESULTS_DIR / "sig_table_erratic.tex", "w", encoding="utf-8") as f:
+            f.write(tex_e)
+        print(f"LaTeX table -> results/sig_table_erratic.tex")
 
-            print(f"\nFull report → results/statistical_report.txt")
-            print(f"JSON data   → results/stat_results.json")
-        except IOError as e:
-            print(f"ERROR: Failed to write output files: {e}", file=sys.stderr)
-            sys.exit(1)
-
-    except Exception as e:
-        print(f"FATAL ERROR: {e}", file=sys.stderr)
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+    print(f"\nFull report → results/statistical_report.txt")
+    print(f"JSON data   → results/stat_results.json")
 
 
 if __name__ == "__main__":

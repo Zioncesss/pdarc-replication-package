@@ -31,7 +31,5 @@ build/
 *.tmp
 *.temp
 
-# Setup and template files (not needed in repository)
+# Setup notes (not needed in the public repository)
 GITHUB_SETUP.md
-OPEN_SCIENCE.md
-README_REPLICATION.md
