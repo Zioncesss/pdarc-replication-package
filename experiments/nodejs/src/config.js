@@ -2,7 +2,7 @@
  * JSS experiment configuration — modified from paper_v2 baseline
  *
  * Key changes vs original (experiments/nodejs/src/config.js):
- *   - REPEATS: 10 → 30  (JSS requirement: ≥30 independent runs for statistical tests)
+ *   - REPEATS: 10 → 30  (supports statistical tests across repeated runs)
  *   - JSS_BASE_SEED: 1000 (different from original 42; avoids seed-space overlap)
  *   - SCENARIOS: added 'erratic' (needed for RQ2: integral contribution validation)
  *   - All algorithm parameters UNCHANGED (same controller as paper §3–4)

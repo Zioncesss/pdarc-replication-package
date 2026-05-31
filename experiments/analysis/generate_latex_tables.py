@@ -1,8 +1,8 @@
 """
-JSS LaTeX Table Generator
-=========================
+P-DARC LaTeX Table Generator
+============================
 Reads results_jss_30rep.json + stat_results.json and generates
-publication-ready LaTeX tables for JSS submission.
+publication-ready LaTeX tables.
 
 Tables generated:
   - tab_main_heavy.tex   : interference_heavy main comparison (Table 2)

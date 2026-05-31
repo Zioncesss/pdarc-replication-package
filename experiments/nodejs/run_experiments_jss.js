@@ -1,5 +1,5 @@
 /**
- * JSS Main Experiment Runner
+ * P-DARC Main Experiment Runner
  * ─────────────────────────────────────────────────────────────────────────────
  * Runs 30 independent repetitions per (scenario × algorithm) configuration.
  * Outputs raw per-run data for downstream Mann-Whitney U / Cliff's δ analysis.
@@ -7,7 +7,7 @@
  * Usage:
  *   node run_experiments_jss.js
  *
- * Output files (JSS/experiments/results/):
+ * Output files (experiments/results/):
  *   results_jss_30rep.json     — full results with raw arrays
  *   results_jss_summary.json   — aggregated stats only (compatible with paper_v2 format)
  *   <scenario>_jss.csv         — per-scenario CSV with mean/std/median/CI95
@@ -47,7 +47,7 @@ function ensureDir(dir) { fs.mkdirSync(dir, { recursive: true }); }
 
 function buildMeta() {
   return {
-    experiment:  'JSS 30-repetition main study',
+    experiment:  'P-DARC 30-repetition main study',
     platform:    'Node.js SED discrete-step simulator (paper-aligned v2)',
     runtime:     process.version,
     timestamp:   new Date().toISOString(),
@@ -204,7 +204,7 @@ function main() {
     }
 
     const totalTime = formatElapsed(Date.now() - t0);
-    console.log(`\n✓ Done in ${totalTime}. Results → JSS/experiments/results/`);
+    console.log(`\n✓ Done in ${totalTime}. Results → experiments/results/`);
     console.log('  Next step: python analysis/statistical_tests.py');
   } catch (err) {
     console.error(`✗ Experiment failed: ${err.message}`);

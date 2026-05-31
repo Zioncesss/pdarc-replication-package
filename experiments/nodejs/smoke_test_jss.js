@@ -1,11 +1,11 @@
 /**
- * JSS Smoke Test — quick sanity check before full 30-rep run
+ * P-DARC Smoke Test - quick sanity check before full 30-rep run
  * ─────────────────────────────────────────────────────────────────────────────
  * Runs 3 reps of a small subset to verify:
  *   1. Import paths (shims) resolve correctly
  *   2. REPEATS/JSS_BASE_SEED override takes effect
  *   3. Raw arrays appear in aggregateRuns output
- *   4. All 6 JSS scenarios (including 'erratic') execute without error
+ *   4. All 6 primary scenarios (including 'erratic') execute without error
  *
  * Usage:  node smoke_test_jss.js
  * Expected runtime: ~5 seconds
@@ -33,7 +33,7 @@ function assert(cond, msg) {
   }
 }
 
-console.log('=== JSS Smoke Test ===\n');
+console.log('=== P-DARC Smoke Test ===\n');
 
 // ── Test 1: Config values ──
 console.log('1. Config overrides');

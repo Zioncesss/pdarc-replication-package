@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this replication package, please cite the associated manuscript and this repository."
 type: software
-title: "P-DARC JSS Replication Package"
+title: "P-DARC Replication Package"
 authors:
   - family-names: "Song"
     given-names: "Chengen"

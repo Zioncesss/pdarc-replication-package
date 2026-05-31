@@ -1,5 +1,5 @@
 {
-  "experiment": "JSS 30-repetition main study",
+  "experiment": "P-DARC 30-repetition main study",
   "platform": "Node.js SED discrete-step simulator (paper-aligned v2)",
   "runtime": "v24.15.0",
   "timestamp": "2026-05-26T13:24:19.992Z",

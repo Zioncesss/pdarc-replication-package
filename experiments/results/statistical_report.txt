@@ -1,4 +1,4 @@
-JSS Statistical Analysis Report
+P-DARC Statistical Analysis Report
 ============================================================
 Data: experiments/results/results_jss_30rep.json
 Scenarios: ['steady', 'step_burst', 'pulse_burst', 'interference_light', 'interference_heavy', 'erratic']
@@ -61,7 +61,7 @@ Scenario: erratic
 
 ════════════════════════════════════════════════════════════
 RQ1 PRIMARY COMPARISON: interference_heavy
-JSS requirement: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)
+Decision rule: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)
 
   Fixed Backpressure: [SUPPORTED]
     p=0.0000, δ=1.000 (large)

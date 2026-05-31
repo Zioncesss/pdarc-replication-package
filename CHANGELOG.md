@@ -5,7 +5,7 @@ All notable changes to the P-DARC experiment package are documented here.
 ## [JSS Version 1.0] — 2026-05-29
 
 ### Added
-- **Statistical rigor upgrade**: Increased repetitions from 10 to 30 per configuration (JSS requirement for Mann-Whitney U)
+- **Statistical rigor upgrade**: Increased repetitions from 10 to 30 per configuration for Mann-Whitney U analysis
 - **New scenario**: `erratic` — models GC pause patterns (80% capacity oscillation every 60ms)
 - **New scenarios**: `io_mixed` (mixed CPU/I/O), `trace_like` (production-like 3-phase scenario)
 - **Ablation study**: Component contribution analysis (7 variants: P-DARC, P-DARC-noI, P-DARC-noEMA, P-DARC-staticL, + baselines)
@@ -150,4 +150,3 @@ Potential enhancements (not planned for JSS):
 - [ ] Distributed testing framework (cross-region validation)
 - [ ] Interactive dashboard (live experiment monitoring)
 - [ ] Extended baselines (ML-based rate control methods)
-

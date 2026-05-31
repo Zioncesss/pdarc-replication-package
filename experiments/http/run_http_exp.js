@@ -165,7 +165,7 @@ async function runOnce(algoName, port, outFile) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 const allResults = {};
 
-console.log('\nP-DARC JSS — HTTP Real-Request Experiment');
+console.log('\nP-DARC HTTP Real-Request Experiment');
 console.log(`Algorithms: ${ALGORITHMS.join(', ')}`);
 console.log(`Reps: ${REPEATS} | Rate: ${LOAD_RATE} req/s | Duration: ${DURATION_S}s | ι=${IOTA}\n`);
 

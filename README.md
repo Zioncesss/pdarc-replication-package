@@ -1,4 +1,4 @@
-# P-DARC JSS Replication Package
+# P-DARC Replication Package
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20437846.svg)](https://doi.org/10.5281/zenodo.20437846)
@@ -40,7 +40,7 @@ npm run smoke
 
 Expected result: `18 passed, 0 failed`.
 
-Regenerate the six-scenario primary simulator results:
+Regenerate the six-scenario primary simulator results (five canonical scenarios plus the erratic scenario):
 
 ```bash
 cd experiments/nodejs
@@ -76,13 +76,13 @@ The HTTP validation is intentionally separate from `npm run all` because local T
 
 Primary comparison: `interference_heavy`, 30 paired common-random-number simulation replications.
 
-| Algorithm | p99 (ms) | vs P-DARC | p-value | Cliff's delta |
+| Algorithm | p99 (ms) | SLA exceedance | p-value | Cliff's delta |
 | --- | ---: | ---: | ---: | ---: |
-| P-DARC | 209.5 | - | - | - |
-| Fixed Backpressure | 451.6 | +53.6% | <0.0001 | 1.000 |
-| AIMD | 354.7 | +40.9% | <0.0001 | 1.000 |
-| PIE | 379.7 | +44.8% | <0.0001 | 1.000 |
-| GradientDescent | 314.2 | +33.3% | <0.0001 | 1.000 |
+| P-DARC | 209.5 | +5% | - | - |
+| Fixed Backpressure | 451.6 | +126% | <0.0001 | 1.000 |
+| AIMD | 354.7 | +77% | <0.0001 | 1.000 |
+| PIE | 379.7 | +90% | <0.0001 | 1.000 |
+| GradientDescent | 314.2 | +57% | <0.0001 | 1.000 |
 
 `P-DARC-noI` is reported as an ablation/control. It is indistinguishable from full P-DARC in the heavy-interference scenario, while the integral path contributes under the erratic-interference scenario.
 
@@ -92,6 +92,7 @@ Primary comparison: `interference_heavy`, 30 paired common-random-number simulat
 - Simulation results are controlled algorithm comparisons, not independent deployment samples.
 - HTTP runs are interpreted as transport-boundary ranking evidence, not as production throughput benchmarks.
 - The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
+- Filenames containing `_jss` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
 
 ## Repository Structure
 
@@ -117,12 +118,13 @@ Primary comparison: `interference_heavy`, 30 paired common-random-number simulat
 If you use this code or data, please cite the associated manuscript and this repository:
 
 ```bibtex
-@article{pdarc-jss,
-  title={P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
-  journal={Journal of Systems and Software},
+@misc{pdarc-replication-package,
+  author={Song, Chengen},
+  title={Replication Package for P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
   year={2026},
   doi={10.5281/zenodo.20437846},
-  note={Replication package available at: https://github.com/Zioncesss/pdarc-jss}
+  url={https://github.com/Zioncesss/pdarc-jss},
+  note={Replication package for the submitted manuscript}
 }
 ```
 

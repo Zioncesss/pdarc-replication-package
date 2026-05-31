@@ -1,7 +1,7 @@
 """
-JSS Statistical Analysis: Mann-Whitney U + Cliff's delta
-=========================================================
-Reads JSS/experiments/results/results_jss_30rep.json and performs:
+P-DARC Statistical Analysis: Mann-Whitney U + Cliff's delta
+===========================================================
+Reads experiments/results/results_jss_30rep.json and performs:
   1. Mann-Whitney U test (two-sided, alpha=0.05) for all pairwise comparisons
      of P-DARC vs each baseline, per scenario.
   2. Cliff's delta effect size with interpretation (negligible/small/medium/large).
@@ -13,9 +13,9 @@ Usage:
     python statistical_tests.py
 
 Output:
-    JSS/experiments/results/statistical_report.txt   — human-readable summary
-    JSS/experiments/results/sig_table_heavy.tex      — LaTeX significance table
-    JSS/experiments/results/stat_results.json        — machine-readable JSON
+    experiments/results/statistical_report.txt       — human-readable summary
+    experiments/results/sig_table_heavy.tex          — LaTeX significance table
+    experiments/results/stat_results.json            — machine-readable JSON
 
 Reference:
     Wohlin et al. (2012), Experimentation in Software Engineering.
@@ -34,7 +34,7 @@ import numpy as np
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
-ROOT = Path(__file__).parent.parent  # JSS/experiments/
+ROOT = Path(__file__).parent.parent  # experiments/
 RESULTS_DIR = ROOT / "results"
 DATA_FILE   = RESULTS_DIR / "results_jss_30rep.json"
 GD_FILE     = RESULTS_DIR / "results_gd_baseline.json"
@@ -196,7 +196,7 @@ def main():
     stat_results = {}
     report_lines = []
 
-    report_lines.append("JSS Statistical Analysis Report")
+    report_lines.append("P-DARC Statistical Analysis Report")
     report_lines.append("=" * 60)
     report_lines.append("Data: experiments/results/results_jss_30rep.json")
     report_lines.append(f"Scenarios: {all_scenarios}")
@@ -245,7 +245,7 @@ def main():
     # ── Primary comparison summary (RQ1) ──
     report_lines.append(f"\n{'═'*60}")
     report_lines.append(f"RQ1 PRIMARY COMPARISON: {primary_scen}")
-    report_lines.append("JSS requirement: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)")
+    report_lines.append("Decision rule: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)")
     report_lines.append("")
     if primary_scen in stat_results:
         for bl, r in stat_results[primary_scen].items():
