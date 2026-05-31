@@ -1,7 +1,7 @@
 # P-DARC Replication Package
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20437846.svg)](https://doi.org/10.5281/zenodo.20437846)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20481448.svg)](https://doi.org/10.5281/zenodo.20481448)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
 ![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue)
 
@@ -11,7 +11,7 @@ This repository contains the replication package for the manuscript:
 
 Repository: https://github.com/Zioncesss/pdarc-replication-package
 
-Archived release: https://doi.org/10.5281/zenodo.20437846
+Archived release: https://doi.org/10.5281/zenodo.20481448
 
 ## Contents
 
@@ -122,7 +122,7 @@ If you use this code or data, please cite the associated manuscript and this rep
   author={Song, Chengen},
   title={Replication Package for P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
   year={2026},
-  doi={10.5281/zenodo.20437846},
+  doi={10.5281/zenodo.20481448},
   url={https://github.com/Zioncesss/pdarc-replication-package},
   note={Replication package for the submitted manuscript}
 }

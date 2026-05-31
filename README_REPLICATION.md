@@ -55,4 +55,4 @@ python generate_latex_tables.py
 - The HTTP experiment is interpreted as transport-boundary ranking evidence, not as a production throughput benchmark.
 - Filenames containing `_jss` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
 - Public repository: https://github.com/Zioncesss/pdarc-replication-package
-- Archived release DOI: https://doi.org/10.5281/zenodo.20437846
+- Archived release DOI: https://doi.org/10.5281/zenodo.20481448

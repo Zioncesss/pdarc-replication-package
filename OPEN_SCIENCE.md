@@ -6,7 +6,7 @@ This repository is the public replication package for the manuscript:
 
 Repository: https://github.com/Zioncesss/pdarc-replication-package
 
-Archived release: https://doi.org/10.5281/zenodo.20437846
+Archived release: https://doi.org/10.5281/zenodo.20481448
 
 ## Contents
 
@@ -41,7 +41,7 @@ The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
 
 The release archive is available at Zenodo:
 
-https://doi.org/10.5281/zenodo.20437846
+https://doi.org/10.5281/zenodo.20481448
 
 ## License
 
