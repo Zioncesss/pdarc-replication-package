@@ -9,7 +9,7 @@ This repository contains the replication package for the manuscript:
 
 **P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity**
 
-Repository: https://github.com/Zioncesss/pdarc-jss
+Repository: https://github.com/Zioncesss/pdarc-replication-package
 
 Archived release: https://doi.org/10.5281/zenodo.20437846
 
@@ -123,7 +123,7 @@ If you use this code or data, please cite the associated manuscript and this rep
   title={Replication Package for P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
   year={2026},
   doi={10.5281/zenodo.20437846},
-  url={https://github.com/Zioncesss/pdarc-jss},
+  url={https://github.com/Zioncesss/pdarc-replication-package},
   note={Replication package for the submitted manuscript}
 }
 ```

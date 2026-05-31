@@ -4,7 +4,7 @@ This repository is the public replication package for the manuscript:
 
 **P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity**
 
-Repository: https://github.com/Zioncesss/pdarc-jss
+Repository: https://github.com/Zioncesss/pdarc-replication-package
 
 Archived release: https://doi.org/10.5281/zenodo.20437846
 

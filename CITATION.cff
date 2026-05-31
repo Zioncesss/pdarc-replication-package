@@ -5,7 +5,7 @@ title: "P-DARC Replication Package"
 authors:
   - family-names: "Song"
     given-names: "Chengen"
-repository-code: "https://github.com/Zioncesss/pdarc-jss"
+repository-code: "https://github.com/Zioncesss/pdarc-replication-package"
 doi: "10.5281/zenodo.20437846"
 version: "1.0.0"
 date-released: "2026-05-29"
