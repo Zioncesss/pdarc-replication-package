@@ -44,23 +44,6 @@ export class Simulator {
   }
 
   run(arrivalRates, interferences, rng) {
-    // Input validation
-    if (!Array.isArray(arrivalRates)) {
-      throw new Error('arrivalRates must be an array');
-    }
-    if (!Array.isArray(interferences)) {
-      throw new Error('interferences must be an array');
-    }
-    if (arrivalRates.length !== interferences.length) {
-      throw new Error(`arrivalRates and interferences length mismatch: ${arrivalRates.length} vs ${interferences.length}`);
-    }
-    if (arrivalRates.length !== this.steps) {
-      throw new Error(`arrivalRates length ${arrivalRates.length} does not match expected steps ${this.steps}`);
-    }
-    if (typeof rng !== 'function') {
-      throw new Error('rng must be a function');
-    }
-
     this.queue = [];
     this.finishedTasks = [];
     for (const key of Object.keys(this.metrics)) this.metrics[key] = [];

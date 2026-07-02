@@ -1,12 +1,12 @@
-"""
-P-DARC LaTeX Table Generator
-============================
-Reads results_jss_30rep.json + stat_results.json and generates
-publication-ready LaTeX tables.
+﻿"""
+JSS LaTeX Table Generator
+=========================
+Reads results_30rep.json + stat_results.json and generates
+publication-ready LaTeX tables for JSS submission.
 
 Tables generated:
   - tab_main_heavy.tex   : interference_heavy main comparison (Table 2)
-  - tab_ablation.tex     : ablation study (Table 3, from ablation_jss_30rep.json)
+  - tab_ablation.tex     : ablation study (Table 3, from ablation_30rep.json)
   - tab_all_scenarios.tex: p99 across all 6 scenarios (Table 4)
 
 Usage:
@@ -20,12 +20,12 @@ from pathlib import Path
 ROOT        = Path(__file__).parent.parent
 RESULTS_DIR = ROOT / "results"
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# 鈹€鈹€ Helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def load_json(fname: str) -> dict:
     p = RESULTS_DIR / fname
     if not p.exists():
-        print(f"WARNING: {fname} not found — run experiments first.")
+        print(f"WARNING: {fname} not found 鈥?run experiments first.")
         return {}
     with open(p, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -51,11 +51,11 @@ def get_std(data, scenario, algo, metric):
         return None
 
 def fmt(val, digits=1):
-    if val is None: return "—"
+    if val is None: return "鈥?
     return f"{val:.{digits}f}"
 
 def pct(val):
-    if val is None: return "—"
+    if val is None: return "鈥?
     return f"{val*100:.1f}"
 
 # Significance markers from stat_results.json
@@ -70,7 +70,7 @@ def sig_marker(stat_results, scenario, baseline):
         pass
     return ""
 
-# ── Table 1: Main comparison — interference_heavy ─────────────────────────────
+# 鈹€鈹€ Table 1: Main comparison 鈥?interference_heavy 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def gen_tab_main_heavy(data, stat_results):
     scen = "interference_heavy"
@@ -90,7 +90,7 @@ def gen_tab_main_heavy(data, stat_results):
         r"\caption{Performance under \texttt{interference\_heavy} ($\iota=0.50$, "
         r"$t\in[40,80)$\,s). 30 independent repetitions. "
         r"$^\dag$ $p<0.05$; $^{\dag\dag}$ $p<0.05$ and Cliff's $|\delta|\geq0.474$.}",
-        r"\label{tab:main_heavy_jss}",
+        r"\label{tab:main_heavy}",
         r"\small",
         r"\setlength{\tabcolsep}{4pt}",
         r"\begin{tabular}{@{}lrrrrr@{}}",
@@ -132,7 +132,7 @@ def gen_tab_main_heavy(data, stat_results):
     ]
     return "\n".join(lines)
 
-# ── Table 2: All scenarios p99 overview ──────────────────────────────────────
+# 鈹€鈹€ Table 2: All scenarios p99 overview 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def gen_tab_all_scenarios(data):
     scenarios = ["steady", "step_burst", "pulse_burst",
@@ -155,7 +155,7 @@ def gen_tab_all_scenarios(data):
         r"\caption{$p_{99}$ latency (ms, mean $\pm$ std, 30 reps) across all six evaluation "
         r"scenarios. $^\star$ = primary RQ1 comparison scenario. "
         r"Dashes indicate recovery time not applicable.}",
-        r"\label{tab:all_scenarios_jss}",
+        r"\label{tab:all_scenarios}",
         r"\small",
         r"\begin{tabular}{@{}l" + "r" * len(algos) + r"@{}}",
         r"\toprule",
@@ -169,7 +169,7 @@ def gen_tab_all_scenarios(data):
             m = get_mean(data, scen, algo, "p99")
             s = get_std(data, scen, algo, "p99")
             if m is None:
-                row_vals.append("—")
+                row_vals.append("鈥?)
             else:
                 row_vals.append(f"{fmt(m)} $\\pm$ {fmt(s)}")
         lines.append(f"{scen_labels[scen]} & " + " & ".join(row_vals) + r" \\")
@@ -181,7 +181,7 @@ def gen_tab_all_scenarios(data):
     ]
     return "\n".join(lines)
 
-# ── Table 3: Ablation ─────────────────────────────────────────────────────────
+# 鈹€鈹€ Table 3: Ablation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def gen_tab_ablation(ablation):
     scen   = "interference_heavy"
@@ -202,7 +202,7 @@ def gen_tab_ablation(ablation):
         r"\centering",
         r"\caption{Ablation study under \texttt{interference\_heavy} (30 reps). "
         r"$\Delta p_{99}$ relative to \pdarc (full); positive = worse than full controller.}",
-        r"\label{tab:ablation_jss}",
+        r"\label{tab:ablation}",
         r"\small",
         r"\begin{tabular}{@{}lrrrr@{}}",
         r"\toprule",
@@ -232,13 +232,13 @@ def gen_tab_ablation(ablation):
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
     return "\n".join(lines)
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# 鈹€鈹€ Main 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def main():
-    data         = load_json("results_jss_30rep.json")
+    data         = load_json("results_30rep.json")
     merge_gradient_descent(data)
     stat_results = load_json("stat_results.json")
-    ablation     = load_json("ablation_jss_30rep.json")
+    ablation     = load_json("ablation_30rep.json")
 
     tables = {
         "tab_main_heavy.tex":    gen_tab_main_heavy(data, stat_results),
@@ -257,3 +257,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

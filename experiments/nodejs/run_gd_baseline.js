@@ -30,7 +30,7 @@ const ALL_SCENARIOS = [...SCENARIOS, 'io_mixed', 'trace_like'];
 const ALGO_NAME     = 'GradientDescent';
 const steps         = Math.floor((DURATION_S * 1000) / STEP_MS);
 
-console.log(`\nP-DARC GradientDescent Baseline`);
+console.log(`\nP-DARC JSS — GradientDescent Baseline`);
 console.log(`Scenarios: ${ALL_SCENARIOS.join(', ')}`);
 console.log(`Reps: ${REPEATS}  |  Base seed: ${JSS_BASE_SEED}\n`);
 

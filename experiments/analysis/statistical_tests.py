@@ -1,7 +1,7 @@
-"""
-P-DARC Statistical Analysis: Mann-Whitney U + Cliff's delta
-===========================================================
-Reads experiments/results/results_jss_30rep.json and performs:
+﻿"""
+JSS Statistical Analysis: Mann-Whitney U + Cliff's delta
+=========================================================
+Reads experiments/results/results_30rep.json and performs:
   1. Mann-Whitney U test (two-sided, alpha=0.05) for all pairwise comparisons
      of P-DARC vs each baseline, per scenario.
   2. Cliff's delta effect size with interpretation (negligible/small/medium/large).
@@ -13,9 +13,9 @@ Usage:
     python statistical_tests.py
 
 Output:
-    experiments/results/statistical_report.txt       — human-readable summary
-    experiments/results/sig_table_heavy.tex          — LaTeX significance table
-    experiments/results/stat_results.json            — machine-readable JSON
+    experiments/results/statistical_report.txt   鈥?human-readable summary
+    experiments/results/sig_table_heavy.tex      鈥?LaTeX significance table
+    experiments/results/stat_results.json        鈥?machine-readable JSON
 
 Reference:
     Wohlin et al. (2012), Experimentation in Software Engineering.
@@ -32,11 +32,11 @@ from pathlib import Path
 from scipy.stats import mannwhitneyu
 import numpy as np
 
-# ── Paths ─────────────────────────────────────────────────────────────────────
+# 鈹€鈹€ Paths 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 ROOT = Path(__file__).parent.parent  # experiments/
 RESULTS_DIR = ROOT / "results"
-DATA_FILE   = RESULTS_DIR / "results_jss_30rep.json"
+DATA_FILE   = RESULTS_DIR / "results_30rep.json"
 GD_FILE     = RESULTS_DIR / "results_gd_baseline.json"
 
 def merge_gradient_descent(data: dict) -> None:
@@ -49,14 +49,14 @@ def merge_gradient_descent(data: dict) -> None:
         if scenario in data:
             data[scenario]["GradientDescent"] = row
 
-# ── Cliff's delta ─────────────────────────────────────────────────────────────
+# 鈹€鈹€ Cliff's delta 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def cliffs_delta(x: list, y: list) -> float:
     """
     Cliff's delta: P(X > Y) - P(X < Y).
     Positive delta means X tends to be larger than Y.
-    Here: x = baseline, y = P-DARC → positive delta means baseline > P-DARC
-    (P-DARC has lower p99 → better).
+    Here: x = baseline, y = P-DARC 鈫?positive delta means baseline > P-DARC
+    (P-DARC has lower p99 鈫?better).
     """
     n_x, n_y = len(x), len(y)
     dominance = sum(
@@ -80,7 +80,7 @@ def ci_95_mean(vals: list) -> tuple:
     se = np.std(vals, ddof=1) / math.sqrt(n)
     return m - 1.96 * se, m + 1.96 * se
 
-# ── Core test function ────────────────────────────────────────────────────────
+# 鈹€鈹€ Core test function 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def compare(baseline_vals: list, pdarc_vals: list, metric: str, label: str) -> dict:
     """
@@ -112,7 +112,7 @@ def compare(baseline_vals: list, pdarc_vals: list, metric: str, label: str) -> d
         "large_effect": bool(abs(d) >= 0.474),
     }
 
-# ── LaTeX table generator ─────────────────────────────────────────────────────
+# 鈹€鈹€ LaTeX table generator 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 SIGNIFICANCE_MARKERS = {
     (True, True):  r"$^{\dag\dag}$",   # significant + large effect
@@ -124,7 +124,7 @@ SIGNIFICANCE_MARKERS = {
 def generate_latex_table(results: dict, scenario: str) -> str:
     """
     Generate a LaTeX table showing p99 results for a scenario.
-    Significance markers: †† = p<0.05 and large effect; † = p<0.05 only.
+    Significance markers: 鈥犫€?= p<0.05 and large effect; 鈥?= p<0.05 only.
     """
     baselines = ["Fixed Backpressure", "AIMD", "PIE", "GradientDescent"]
     header = (
@@ -150,13 +150,13 @@ def generate_latex_table(results: dict, scenario: str) -> str:
         pdarc_mean = np.mean(pdarc_raw)
         ci_lo, ci_hi = ci_95_mean(pdarc_raw)
         rows.append(
-            rf"\pdarc & {pdarc_mean:.1f} & [{ci_lo:.1f}, {ci_hi:.1f}] & — & — & (reference) \\"
+            rf"\pdarc & {pdarc_mean:.1f} & [{ci_lo:.1f}, {ci_hi:.1f}] & 鈥?& 鈥?& (reference) \\"
         )
 
     for bl in baselines:
         bl_raw = scen_results.get(bl, {}).get("p99", {}).get("raw", [])
         if not bl_raw or not pdarc_raw:
-            rows.append(f"{bl} & — & — & — & — & — \\\\")
+            rows.append(f"{bl} & 鈥?& 鈥?& 鈥?& 鈥?& 鈥?\\\\")
             continue
         r = compare(bl_raw, pdarc_raw, "p99", f"{bl} vs P-DARC")
         marker = SIGNIFICANCE_MARKERS[(r["significant"], r["large_effect"])]
@@ -177,12 +177,12 @@ def generate_latex_table(results: dict, scenario: str) -> str:
 
     return header + "\n".join(rows) + "\n" + footer
 
-# ── Main analysis ─────────────────────────────────────────────────────────────
+# 鈹€鈹€ Main analysis 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 def main():
     if not DATA_FILE.exists():
         print(f"ERROR: {DATA_FILE} not found.")
-        print("Run 'node run_experiments_jss.js' first to generate results.")
+        print("Run 'node run_experiments.js' first to generate results.")
         sys.exit(1)
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
@@ -196,9 +196,9 @@ def main():
     stat_results = {}
     report_lines = []
 
-    report_lines.append("P-DARC Statistical Analysis Report")
+    report_lines.append("JSS Statistical Analysis Report")
     report_lines.append("=" * 60)
-    report_lines.append("Data: experiments/results/results_jss_30rep.json")
+    report_lines.append("Data: experiments/results/results_30rep.json")
     report_lines.append(f"Scenarios: {all_scenarios}")
     report_lines.append(f"Repetitions per config: "
                         f"{len(next(iter(next(iter(data.values())).values())).get('p99', {}).get('raw', []))} reps")
@@ -211,9 +211,9 @@ def main():
             continue
 
         stat_results[scenario] = {}
-        report_lines.append(f"\n{'─'*60}")
+        report_lines.append(f"\n{'鈹€'*60}")
         report_lines.append(f"Scenario: {scenario}")
-        report_lines.append(f"  P-DARC p99: {np.mean(pdarc_raw):.1f} ± {np.std(pdarc_raw, ddof=1):.1f} ms"
+        report_lines.append(f"  P-DARC p99: {np.mean(pdarc_raw):.1f} 卤 {np.std(pdarc_raw, ddof=1):.1f} ms"
                             f"  CI95=[{ci_95_mean(pdarc_raw)[0]:.1f}, {ci_95_mean(pdarc_raw)[1]:.1f}]")
 
         for bl in baselines:
@@ -228,9 +228,9 @@ def main():
             eff_str = r["effect_size"].upper()
             report_lines.append(
                 f"  {bl:<22} p99={r['baseline_mean']:.1f}ms"
-                f"  Δ={r['delta_abs']:+.1f}ms ({r['delta_pct']:+.1f}%)"
+                f"  螖={r['delta_abs']:+.1f}ms ({r['delta_pct']:+.1f}%)"
                 f"  U={r['U_stat']:.0f}  p={r['p_value']:.4f}  [{sig_str}]"
-                f"  Cliff's δ={r['cliffs_delta']:.3f} [{eff_str}]"
+                f"  Cliff's 未={r['cliffs_delta']:.3f} [{eff_str}]"
             )
 
         # Also run reject_rate comparison
@@ -242,20 +242,20 @@ def main():
             r_rej = compare(bl_rej, pdarc_rej, "reject_rate", f"{bl} vs P-DARC rej [{scenario}]")
             stat_results[scenario].setdefault("reject_rate", {})[bl] = r_rej
 
-    # ── Primary comparison summary (RQ1) ──
-    report_lines.append(f"\n{'═'*60}")
+    # 鈹€鈹€ Primary comparison summary (RQ1) 鈹€鈹€
+    report_lines.append(f"\n{'鈺?*60}")
     report_lines.append(f"RQ1 PRIMARY COMPARISON: {primary_scen}")
-    report_lines.append("Decision rule: p < 0.05 AND |Cliff's δ| ≥ 0.474 (large effect)")
+    report_lines.append("JSS requirement: p < 0.05 AND |Cliff's 未| 鈮?0.474 (large effect)")
     report_lines.append("")
     if primary_scen in stat_results:
         for bl, r in stat_results[primary_scen].items():
             if isinstance(r, dict) and "p_value" in r:
-                jss_pass = r["significant"] and r["large_effect"]
-                status = "[SUPPORTED]" if jss_pass else "[NEEDS REVISION]"
+                supported = r["significant"] and r["large_effect"]
+                status = "[SUPPORTED]" if supported else "[NEEDS REVISION]"
                 report_lines.append(f"  {bl}: {status}")
-                report_lines.append(f"    p={r['p_value']:.4f}, δ={r['cliffs_delta']:.3f} ({r['effect_size']})")
+                report_lines.append(f"    p={r['p_value']:.4f}, 未={r['cliffs_delta']:.3f} ({r['effect_size']})")
 
-    # ── Write outputs ──
+    # 鈹€鈹€ Write outputs 鈹€鈹€
     report_text = "\n".join(report_lines)
     print(report_text)
 
@@ -279,9 +279,10 @@ def main():
             f.write(tex_e)
         print(f"LaTeX table -> results/sig_table_erratic.tex")
 
-    print(f"\nFull report → results/statistical_report.txt")
-    print(f"JSON data   → results/stat_results.json")
+    print(f"\nFull report 鈫?results/statistical_report.txt")
+    print(f"JSON data   鈫?results/stat_results.json")
 
 
 if __name__ == "__main__":
     main()
+

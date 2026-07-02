@@ -1,17 +1,17 @@
-/**
- * P-DARC Smoke Test - quick sanity check before full 30-rep run
- * ─────────────────────────────────────────────────────────────────────────────
+﻿/**
+ * Smoke Test 鈥?quick sanity check before full 30-rep run
+ * 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
  * Runs 3 reps of a small subset to verify:
  *   1. Import paths (shims) resolve correctly
- *   2. REPEATS/JSS_BASE_SEED override takes effect
+ *   2. REPEATS/BASE_SEED override takes effect
  *   3. Raw arrays appear in aggregateRuns output
- *   4. All 6 primary scenarios (including 'erratic') execute without error
+ *   4. All 6 JSS scenarios (including 'erratic') execute without error
  *
- * Usage:  node smoke_test_jss.js
+ * Usage:  node smoke_test.js
  * Expected runtime: ~5 seconds
  */
 
-import { REPEATS, JSS_BASE_SEED, SCENARIOS, ALGORITHMS } from './src/config.js';
+import { REPEATS, BASE_SEED, SCENARIOS, ALGORITHMS } from './src/config.js';
 import { createAlgorithm }                                 from './src/algorithms.js';
 import { Simulator }                                       from './src/simulator.js';
 import { createScenario }                                  from './src/scenarios.js';
@@ -25,25 +25,25 @@ let fail = 0;
 
 function assert(cond, msg) {
   if (cond) {
-    console.log(`  ✓ ${msg}`);
+    console.log(`  鉁?${msg}`);
     pass++;
   } else {
-    console.error(`  ✗ FAIL: ${msg}`);
+    console.error(`  鉁?FAIL: ${msg}`);
     fail++;
   }
 }
 
-console.log('=== P-DARC Smoke Test ===\n');
+console.log('=== Smoke Test ===\n');
 
-// ── Test 1: Config values ──
+// 鈹€鈹€ Test 1: Config values 鈹€鈹€
 console.log('1. Config overrides');
 assert(REPEATS === 30, `REPEATS = 30 (got ${REPEATS})`);
-assert(JSS_BASE_SEED === 1000, `JSS_BASE_SEED = 1000 (got ${JSS_BASE_SEED})`);
+assert(BASE_SEED === 1000, `BASE_SEED = 1000 (got ${BASE_SEED})`);
 assert(SCENARIOS.includes('erratic'), `SCENARIOS includes 'erratic'`);
 assert(SCENARIOS.length === 6, `6 scenarios (got ${SCENARIOS.length})`);
 
-// ── Test 2: Run a few configs and check output shape ──
-console.log('\n2. Experiment execution (3 reps × 2 scenarios × 2 algorithms)');
+// 鈹€鈹€ Test 2: Run a few configs and check output shape 鈹€鈹€
+console.log('\n2. Experiment execution (3 reps 脳 2 scenarios 脳 2 algorithms)');
 const testScenarios = ['interference_heavy', 'erratic'];
 const testAlgos     = ['P-DARC', 'Fixed Backpressure'];
 
@@ -53,7 +53,7 @@ for (const scen of testScenarios) {
     const { rates, interferences } = createScenario(scen, steps);
     const rows = [];
     for (let r = 0; r < SMOKE_REPS; r++) {
-      const rng  = setRunSeed(JSS_BASE_SEED, r);
+      const rng  = setRunSeed(BASE_SEED, r);
       const a    = createAlgorithm(algo);
       const sim  = new Simulator(a);
       const { metrics, finishedTasks } = sim.run(rates, interferences, rng);
@@ -79,8 +79,8 @@ for (const scen of testScenarios) {
   }
 }
 
-// ── Test 3: CRN check ──
-console.log('\n3. CRN check (same seed → same first p99 across algos)');
+// 鈹€鈹€ Test 3: CRN check 鈹€鈹€
+console.log('\n3. CRN check (same seed 鈫?same first p99 across algos)');
 {
   const scen = 'steady';
   const steps = Math.floor((120 * 1000) / 15);
@@ -88,7 +88,7 @@ console.log('\n3. CRN check (same seed → same first p99 across algos)');
 
   const p99s = {};
   for (const algo of ['P-DARC', 'AIMD', 'PIE']) {
-    const rng  = setRunSeed(JSS_BASE_SEED, 0);   // same seed for all
+    const rng  = setRunSeed(BASE_SEED, 0);   // same seed for all
     const a    = createAlgorithm(algo);
     const sim  = new Simulator(a);
     const { metrics, finishedTasks } = sim.run(rates, interferences, rng);
@@ -102,11 +102,12 @@ console.log('\n3. CRN check (same seed → same first p99 across algos)');
   assert(typeof p99s['AIMD'] === 'number', `CRN: AIMD p99 computed (${p99s['AIMD'].toFixed(1)}ms)`);
 }
 
-// ── Summary ──
+// 鈹€鈹€ Summary 鈹€鈹€
 console.log(`\n=== ${pass} passed, ${fail} failed ===`);
 if (fail > 0) {
-  console.error('\nSmoke test FAILED — do not run full experiment until resolved.');
+  console.error('\nSmoke test FAILED 鈥?do not run full experiment until resolved.');
   process.exit(1);
 } else {
-  console.log('\nSmoke test PASSED — safe to run: node run_experiments_jss.js');
+  console.log('\nSmoke test PASSED 鈥?safe to run: node run_experiments.js');
 }
+

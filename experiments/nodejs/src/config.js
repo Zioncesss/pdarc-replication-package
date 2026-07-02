@@ -1,11 +1,11 @@
-/**
- * JSS experiment configuration — modified from paper_v2 baseline
+﻿/**
+ * Experiment configuration 鈥?modified from paper_v2 baseline
  *
  * Key changes vs original (experiments/nodejs/src/config.js):
- *   - REPEATS: 10 → 30  (supports statistical tests across repeated runs)
- *   - JSS_BASE_SEED: 1000 (different from original 42; avoids seed-space overlap)
+ *   - REPEATS: 10 鈫?30  (Requirement: 鈮?0 independent runs for statistical tests)
+ *   - BASE_SEED: 1000 (different from original 42; avoids seed-space overlap)
  *   - SCENARIOS: added 'erratic' (needed for RQ2: integral contribution validation)
- *   - All algorithm parameters UNCHANGED (same controller as paper §3–4)
+ *   - All algorithm parameters UNCHANGED (same controller as paper 搂3鈥?)
  */
 
 export const STEP_MS   = 15;
@@ -13,14 +13,14 @@ export const STEP_S    = STEP_MS / 1000;
 export const DURATION_S = 120;
 export const WARMUP_S  = 10;
 
-// JSS: 30 reps per configuration (was 10)
+// 30 reps per configuration (was 10)
 export const REPEATS = 30;
 
-// Base seed for this study — deliberately different from original (42)
-// to prevent seed-space overlap between paper_v2 and JSS datasets.
-// CRN (common random numbers) is preserved: same repeatIndex → same Poisson arrivals
+// Base seed for this study 鈥?deliberately different from original (42)
+// to prevent seed-space overlap between original and current datasets.
+// CRN (common random numbers) is preserved: same repeatIndex 鈫?same Poisson arrivals
 // across all algorithms within a scenario, maximising paired comparison power.
-export const JSS_BASE_SEED = 1000;
+export const BASE_SEED = 1000;
 
 export const CAPACITY  = 1000;
 export const EPS       = 1e-9;
@@ -33,7 +33,7 @@ export const LAMBDA_MAX = CAPACITY * 2.0;
 export const D_REF        = 0.2;
 export const L_REF_STATIC = Math.floor(D_REF * CAPACITY);   // 200 tasks
 
-// P-DARC controller parameters (paper §3, unchanged)
+// P-DARC controller parameters (paper 搂3, unchanged)
 export const PDARC_ALPHA   = 0.2;
 export const PDARC_BETA    = 1.0;
 export const PDARC_GAMMA   = 0.2;
@@ -64,7 +64,7 @@ export const AIMD_MD_FACTOR   = 0.5;
 export const AIMD_AI_STEP     = CAPACITY * 0.05;
 export const AIMD_INIT_LAMBDA = SCENARIO_BASE_RATE;
 
-// JSS evaluation scenarios:
+// Evaluation scenarios:
 //   'erratic' added for RQ2 (integral contribution validation, 60ms oscillation period)
 export const SCENARIOS = [
   'steady',
@@ -72,7 +72,7 @@ export const SCENARIOS = [
   'pulse_burst',
   'interference_light',
   'interference_heavy',
-  'erratic',           // GC-pause model: capacity oscillates 0%↔80% every 4 steps (60ms)
+  'erratic',           // GC-pause model: capacity oscillates 0%鈫?0% every 4 steps (60ms)
 ];
 
 // Primary comparison algorithms (RQ1, RQ4)
@@ -98,3 +98,4 @@ export const ABLATION_ALGORITHMS = [
 export function clip(v, lo, hi) {
   return Math.max(lo, Math.min(hi, v));
 }
+

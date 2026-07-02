@@ -2,7 +2,7 @@
 
 This repository is the public replication package for the manuscript:
 
-**P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity**
+**P-DARC: Lightweight Admission Control for Node.js and Go Service Queues under Runtime Capacity Fluctuation**
 
 Repository: https://github.com/Zioncesss/pdarc-replication-package
 

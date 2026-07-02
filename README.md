@@ -1,4 +1,4 @@
-# P-DARC Replication Package
+﻿# P-DARC Replication Package
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20481448.svg)](https://doi.org/10.5281/zenodo.20481448)
@@ -7,7 +7,7 @@
 
 This repository contains the replication package for the manuscript:
 
-**P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity**
+**P-DARC: Lightweight Admission Control for Node.js and Go Service Queues under Runtime Capacity Fluctuation**
 
 Repository: https://github.com/Zioncesss/pdarc-replication-package
 
@@ -92,7 +92,7 @@ Primary comparison: `interference_heavy`, 30 paired common-random-number simulat
 - Simulation results are controlled algorithm comparisons, not independent deployment samples.
 - HTTP runs are interpreted as transport-boundary ranking evidence, not as production throughput benchmarks.
 - The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
-- Filenames containing `_jss` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
+- Filenames containing `` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
 
 ## Repository Structure
 
@@ -120,7 +120,7 @@ If you use this code or data, please cite the associated manuscript and this rep
 ```bibtex
 @misc{pdarc-replication-package,
   author={Song, Chengen},
-  title={Replication Package for P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity},
+  title={Replication Package for P-DARC: Lightweight Admission Control for Node.js and Go Service Queues under Runtime Capacity Fluctuation},
   year={2026},
   doi={10.5281/zenodo.20481448},
   url={https://github.com/Zioncesss/pdarc-replication-package},
@@ -131,3 +131,4 @@ If you use this code or data, please cite the associated manuscript and this rep
 ## License
 
 Code is released under the MIT License. Data and documentation are intended for reuse with attribution.
+

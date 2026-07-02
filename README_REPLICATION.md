@@ -1,4 +1,4 @@
-# P-DARC Replication Package
+﻿# P-DARC Replication Package
 
 This package contains the simulator, HTTP experiment harness, generated results, and analysis scripts used by the associated manuscript.
 
@@ -23,7 +23,7 @@ npm install
 npm test
 ```
 
-This regenerates `experiments/results/results_jss_30rep.json` for the six primary simulation scenarios (five canonical scenarios plus the erratic scenario). The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
+This regenerates `experiments/results/results_30rep.json` for the six primary simulation scenarios (five canonical scenarios plus the erratic scenario). The manuscript's main heavy-interference result is P-DARC `p99 = 209.5 ms`.
 
 ## Reproduce additional result sets
 
@@ -53,6 +53,7 @@ python generate_latex_tables.py
 
 - The simulator uses paired common random numbers for controlled algorithm comparison.
 - The HTTP experiment is interpreted as transport-boundary ranking evidence, not as a production throughput benchmark.
-- Filenames containing `_jss` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
+- Filenames containing `` are retained as legacy dataset identifiers for the archived 30-repetition experiment package.
 - Public repository: https://github.com/Zioncesss/pdarc-replication-package
 - Archived release DOI: https://doi.org/10.5281/zenodo.20481448
+

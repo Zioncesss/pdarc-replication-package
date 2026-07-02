@@ -1,7 +1,7 @@
 {
-  "name": "pdarc-replication-experiments",
+  "name": "pdarc-jss-experiments",
   "version": "1.0.0",
-  "description": "P-DARC replication experiment platform - 30 reps, Mann-Whitney U ready",
+  "description": "P-DARC JSS experiment platform — 30 reps, Mann-Whitney U ready",
   "type": "module",
   "scripts": {
     "smoke":      "node smoke_test_jss.js",

@@ -1,16 +1,16 @@
-/**
- * JSS Ablation Runner (RQ2: Component Contribution)
- * ─────────────────────────────────────────────────────────────────────────────
+﻿/**
+ * Ablation Runner (RQ2: Component Contribution)
+ * 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
  * Isolates the contribution of:
  *   - adaptive L_ref   (compare P-DARC vs P-DARC-staticL)
  *   - degradation integral  (compare P-DARC vs P-DARC-noI)
  *   - EMA estimator    (compare P-DARC vs P-DARC-noEMA)
  *
- * 30 reps per (scenario × algorithm variant).
- * Same JSS_BASE_SEED as run_experiments_jss.js for CRN consistency.
+ * 30 reps per (scenario 脳 algorithm variant).
+ * Same BASE_SEED as run_experiments.js for CRN consistency.
  *
- * Output: JSS/experiments/results/ablation_jss_30rep.json
- *         JSS/experiments/results/ablation_jss_summary.json
+ * Output: experiments/results/ablation_30rep.json
+ *         experiments/results/ablation_summary.json
  */
 
 import fs from 'fs';
@@ -18,7 +18,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  DURATION_S, REPEATS, JSS_BASE_SEED, SCENARIOS, ABLATION_ALGORITHMS,
+  DURATION_S, REPEATS, BASE_SEED, SCENARIOS, ABLATION_ALGORITHMS,
 } from './src/config.js';
 import { createAlgorithm }                    from './src/algorithms.js';
 import { Simulator }                          from './src/simulator.js';
@@ -36,7 +36,7 @@ function runConfig(scenarioName, algoName) {
   const { rates, interferences } = createScenario(scenarioName, steps);
   const rows = [];
   for (let r = 0; r < REPEATS; r++) {
-    const rng  = setRunSeed(JSS_BASE_SEED, r);
+    const rng  = setRunSeed(BASE_SEED, r);
     const algo = createAlgorithm(algoName);
     const sim  = new Simulator(algo);
     const { metrics, finishedTasks } = sim.run(rates, interferences, rng);
@@ -47,14 +47,14 @@ function runConfig(scenarioName, algoName) {
 
 function printTable(scenario, ablation) {
   process.stderr.write(`\n=== ${scenario} ===\n`);
-  process.stderr.write(`${'Algorithm'.padEnd(22)} ${'p99_mean'.padStart(9)} ${'±std'.padStart(7)} ${'rej%'.padStart(7)} ${'q_max'.padStart(7)}\n`);
-  process.stderr.write('─'.repeat(56) + '\n');
+  process.stderr.write(`${'Algorithm'.padEnd(22)} ${'p99_mean'.padStart(9)} ${'卤std'.padStart(7)} ${'rej%'.padStart(7)} ${'q_max'.padStart(7)}\n`);
+  process.stderr.write('鈹€'.repeat(56) + '\n');
   for (const algo of ABLATION_ALGORITHMS) {
     const r = ablation[algo];
     process.stderr.write(
       `${algo.padEnd(22)}` +
       ` ${r.p99.mean.toFixed(1).padStart(9)}` +
-      ` ±${r.p99.std.toFixed(1).padEnd(5)}` +
+      ` 卤${r.p99.std.toFixed(1).padEnd(5)}` +
       ` ${(r.reject_rate.mean * 100).toFixed(1).padStart(6)}%` +
       ` ${r.q_max.mean.toFixed(0).padStart(7)}\n`,
     );
@@ -117,16 +117,17 @@ function main() {
   }
 
   fs.writeFileSync(
-    path.join(RESULTS_DIR, 'ablation_jss_30rep.json'),
+    path.join(RESULTS_DIR, 'ablation_30rep.json'),
     JSON.stringify(ablation, null, 2),
   );
   fs.writeFileSync(
-    path.join(RESULTS_DIR, 'ablation_jss_summary.json'),
+    path.join(RESULTS_DIR, 'ablation_summary.json'),
     JSON.stringify(summary, null, 2),
   );
 
   const total = ((Date.now() - t0) / 1000).toFixed(1);
-  process.stderr.write(`\n✓ Ablation done in ${total}s → results/ablation_jss_30rep.json\n`);
+  process.stderr.write(`\n鉁?Ablation done in ${total}s 鈫?results/ablation_30rep.json\n`);
 }
 
 main();
+
