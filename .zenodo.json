@@ -1,0 +1,25 @@
+﻿{
+  "title": "P-DARC: Admission Control for Runtime-Local Queues under Time-Varying Capacity",
+  "description": "Replication package for the P-DARC paper (CCPE submission). Includes simulator source, controller implementations, experiment runners, raw per-run data, analysis scripts, and supplementary materials.",
+  "creators": [
+    {
+      "name": "Song Chengen",
+      "affiliation": "Zhejiang University of Technology",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "admission control",
+    "runtime performance",
+    "feedback control",
+    "Node.js",
+    "Go",
+    "concurrency",
+    "tail latency",
+    "empirical evaluation"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng"
+}
