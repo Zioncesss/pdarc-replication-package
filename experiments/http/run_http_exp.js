@@ -1,7 +1,7 @@
-/**
+﻿/**
  * HTTP Experiment Orchestrator
- * ─────────────────────────────────────────────────────────────────────────────
- * For each algorithm × 15 reps:
+ * 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+ * For each algorithm 脳 15 reps:
  *   1. Spawn http_server.js as child process (ephemeral port)
  *   2. Wait for "READY" on stdout
  *   3. Send HTTP requests at 800 req/s for DURATION_S seconds (inline load gen)
@@ -23,7 +23,7 @@ const __dirname   = path.dirname(fileURLToPath(import.meta.url));
 const RESULTS_DIR = path.join(__dirname, '..', 'results');
 const SERVER_PATH = path.join(__dirname, 'http_server.js');
 
-// ── Experiment parameters ────────────────────────────────────────────────────
+// 鈹€鈹€ Experiment parameters 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 const DURATION_S = 60;
 const WARMUP_S   = 5;
 const LOAD_RATE  = 800;    // req/s
@@ -32,7 +32,7 @@ const IOTA       = 0.50;
 const ALGORITHMS = ['Fixed Backpressure', 'AIMD', 'PIE', 'GradientDescent', 'P-DARC'];
 let basePort     = 13000;
 
-// ── Stats helpers ─────────────────────────────────────────────────────────────
+// 鈹€鈹€ Stats helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 function mean(arr)   { return arr.reduce((a, b) => a + b, 0) / arr.length; }
 function std(arr) {
   const m = mean(arr);
@@ -43,7 +43,7 @@ function pct(arr, p) {
   return s[Math.floor(s.length * p)] ?? 0;
 }
 
-// ── Load generator (batched for Windows 15ms timer resolution) ────────────────
+// 鈹€鈹€ Load generator (batched for Windows 15ms timer resolution) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 const TICK_MS = 15;
 const BATCH   = Math.round(LOAD_RATE * TICK_MS / 1000);  // 12 req/tick
 const agent   = new http.Agent({ keepAlive: true, maxSockets: 300 });
@@ -96,7 +96,7 @@ function runLoadGenerator(port, durationS) {
   });
 }
 
-// ── Single run ────────────────────────────────────────────────────────────────
+// 鈹€鈹€ Single run 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 function waitForReady(proc) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => reject(new Error('Server start timeout')), 10000);
@@ -162,12 +162,12 @@ async function runOnce(algoName, port, outFile) {
   });
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
+// 鈹€鈹€ Main 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 const allResults = {};
 
-console.log('\nP-DARC JSS — HTTP Real-Request Experiment');
+console.log('\nP-DARC  鈥?HTTP Real-Request Experiment');
 console.log(`Algorithms: ${ALGORITHMS.join(', ')}`);
-console.log(`Reps: ${REPEATS} | Rate: ${LOAD_RATE} req/s | Duration: ${DURATION_S}s | ι=${IOTA}\n`);
+console.log(`Reps: ${REPEATS} | Rate: ${LOAD_RATE} req/s | Duration: ${DURATION_S}s | 喂=${IOTA}\n`);
 
 for (const algo of ALGORITHMS) {
   const rows = [];
@@ -201,7 +201,7 @@ for (const algo of ALGORITHMS) {
   };
 
   process.stdout.write(
-    ` p99=${mean(p99s).toFixed(1)}±${std(p99s).toFixed(1)}ms  rej=${mean(rejs).toFixed(1)}%\n`
+    ` p99=${mean(p99s).toFixed(1)}卤${std(p99s).toFixed(1)}ms  rej=${mean(rejs).toFixed(1)}%\n`
   );
 }
 
@@ -221,3 +221,4 @@ fs.writeFileSync(outPath, JSON.stringify({
 
 agent.destroy();
 console.log(`\nSaved: ${outPath}`);
+

@@ -1,5 +1,5 @@
-/**
- * JSS metrics module — extended from paper_v2 baseline
+﻿/**
+ *  metrics module 鈥?extended from paper_v2 baseline
  *
  * Key additions vs original:
  *   - median() and medianAbsoluteDeviation() for robust location/spread reporting
@@ -9,7 +9,7 @@
  */
 import { DURATION_S, WARMUP_S } from './config.js';
 
-// ── Basic statistics ──────────────────────────────────────────────────────────
+// 鈹€鈹€ Basic statistics 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 export function mean(arr) {
   if (arr.length === 0) return 0;
@@ -38,8 +38,8 @@ export function medianAbsoluteDeviation(arr) {
 }
 
 /**
- * 95% confidence interval via normal approximation (mean ± 1.96·SE).
- * Valid when n ≥ 30 (CLT applies). Returns [lo, hi].
+ * 95% confidence interval via normal approximation (mean 卤 1.96路SE).
+ * Valid when n 鈮?30 (CLT applies). Returns [lo, hi].
  */
 export function confidenceInterval95(arr) {
   if (arr.length === 0) return [0, 0];
@@ -58,7 +58,7 @@ export function percentile(arr, p) {
   return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo);
 }
 
-// ── Recovery time ─────────────────────────────────────────────────────────────
+// 鈹€鈹€ Recovery time 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 export function calculateRecoveryTime(timeArr, qlenArr, endEventTime = 80) {
   const before = [];
@@ -76,7 +76,7 @@ export function calculateRecoveryTime(timeArr, qlenArr, endEventTime = 80) {
   return DURATION_S - endEventTime;
 }
 
-// ── Per-run summary (unchanged from original) ─────────────────────────────────
+// 鈹€鈹€ Per-run summary (unchanged from original) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 export function summarizeRun(metrics, finishedTasks, scenario) {
   const delaysMs = finishedTasks.map((d) => d * 1000);
@@ -111,12 +111,12 @@ export function summarizeRun(metrics, finishedTasks, scenario) {
   };
 }
 
-// ── Multi-run aggregation (extended for JSS) ──────────────────────────────────
+// 鈹€鈹€ Multi-run aggregation (extended for ) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 /**
  * Aggregate 30 per-run summaries into location/spread estimates.
  *
- * JSS extension: each metric now returns a full statistics object including
+ *  extension: each metric now returns a full statistics object including
  * raw values for downstream Mann-Whitney U testing.
  *
  * Output schema per metric:
@@ -150,7 +150,7 @@ export function aggregateRuns(rows) {
   return agg;
 }
 
-// ── CSV export (backward compatible) ─────────────────────────────────────────
+// 鈹€鈹€ CSV export (backward compatible) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 export function toCsv(scenario, results, algorithms) {
   const header = ['Algorithm'];
@@ -172,3 +172,4 @@ export function toCsv(scenario, results, algorithms) {
   }
   return lines.join('\n');
 }
+

@@ -5,7 +5,7 @@
  * Outputs raw per-run data for downstream Mann-Whitney U / Cliff's 未 analysis.
  *
  * Usage:
- *   node run_experiments_jss.js
+ *   node run_experiments.js
  *
  * Output files (experiments/results/):
  *   results_30rep.json     鈥?full results with raw arrays
@@ -47,7 +47,7 @@ function ensureDir(dir) { fs.mkdirSync(dir, { recursive: true }); }
 
 function buildMeta() {
   return {
-    experiment:  'JSS 30-repetition main study',
+    experiment:  '30-repetition main study',
     platform:    'Node.js SED discrete-step simulator (paper-aligned v2)',
     runtime:     process.version,
     timestamp:   new Date().toISOString(),
@@ -180,4 +180,5 @@ function main() {
 }
 
 main();
+
 

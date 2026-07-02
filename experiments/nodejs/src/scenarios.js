@@ -1,4 +1,4 @@
-import {
+﻿import {
   STEP_MS,
   WARMUP_S,
   SCENARIO_BASE_RATE,
@@ -13,7 +13,7 @@ export function createScenario(name, steps) {
   const interferences = new Array(steps).fill(0);
   const stepS = STEP_MS / 1000;
 
-  // ── Original per-step scenarios ───────────────────────────────────────────
+  // 鈹€鈹€ Original per-step scenarios 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   for (let i = 0; i < steps; i++) {
     const t = i * stepS;
     if (name === 'step_burst' && t >= 40 && t < 80) {
@@ -30,7 +30,7 @@ export function createScenario(name, steps) {
       const spikeDur = 3;
       if ((i % period) < spikeDur) interferences[i] = 0.95;
     } else if (name === 'erratic') {
-      // Capacity oscillates 0%<->80% every 4 steps — EMA cannot track; iCap dampens
+      // Capacity oscillates 0%<->80% every 4 steps 鈥?EMA cannot track; iCap dampens
       const block = 4;
       interferences[i] = ((Math.floor(i / block) % 2) === 1) ? 0.80 : 0.0;
     } else if (name === 'ramp_interference') {
@@ -44,13 +44,13 @@ export function createScenario(name, steps) {
     }
   }
 
-  // ── New scenarios (JSS revision) ─────────────────────────────────────────
+  // 鈹€鈹€ New scenarios ( revision) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
   if (name === 'io_mixed') {
     // Models mixed CPU/I/O workloads under slight overload.
     // Arrival 900/s (13.5 tasks/step) exceeds average capacity:
-    //   every 8-step period, 2 steps stall at ι=0.85 (sync I/O: db query, fs.readFileSync)
-    //   average capacity = (6×15 + 2×2.25)/8 ≈ 11.8 tasks/step < 13.5 arrivals/step
+    //   every 8-step period, 2 steps stall at 喂=0.85 (sync I/O: db query, fs.readFileSync)
+    //   average capacity = (6脳15 + 2脳2.25)/8 鈮?11.8 tasks/step < 13.5 arrivals/step
     // Without control the queue grows at ~1.7 tasks/step; P-DARC detects the
     // capacity drop via N_out and pre-emptively reduces admission.
     const ioPeriod = 8;
@@ -61,12 +61,12 @@ export function createScenario(name, steps) {
       if ((i % ioPeriod) < ioBurst) interferences[i] = ioIota;
     }
   } else if (name === 'trace_like') {
-    // Production-like scenario: normal traffic → load+GC surge → recovery.
-    // Phase 1 (t=10–50 s): 800/s, minor GC baseline (ι=0.15, every 133 steps, 1 step)
-    // Phase 2 (t=50–90 s): Traffic 950/s + periodic GC bursts (ι=0.50, every 8 steps, 2 steps)
-    //   avg capacity in Phase 2 = (6×15 + 2×7.5)/8 = 13.1 tasks/step < 14.25 arrivals/step
+    // Production-like scenario: normal traffic 鈫?load+GC surge 鈫?recovery.
+    // Phase 1 (t=10鈥?0 s): 800/s, minor GC baseline (喂=0.15, every 133 steps, 1 step)
+    // Phase 2 (t=50鈥?0 s): Traffic 950/s + periodic GC bursts (喂=0.50, every 8 steps, 2 steps)
+    //   avg capacity in Phase 2 = (6脳15 + 2脳7.5)/8 = 13.1 tasks/step < 14.25 arrivals/step
     //   Models production service under allocation-intensive load surge causing GC pressure.
-    // Phase 3 (t=90–120 s): 800/s recovery, minor GC only.
+    // Phase 3 (t=90鈥?20 s): 800/s recovery, minor GC only.
     const warmupSteps = Math.ceil(WARMUP_S / stepS);
     const phase2Start = Math.round(50 / stepS);
     const phase3Start = Math.round(90 / stepS);
@@ -97,3 +97,4 @@ export function createScenario(name, steps) {
 
   return { rates, interferences };
 }
+

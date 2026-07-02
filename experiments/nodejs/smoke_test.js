@@ -5,7 +5,7 @@
  *   1. Import paths (shims) resolve correctly
  *   2. REPEATS/BASE_SEED override takes effect
  *   3. Raw arrays appear in aggregateRuns output
- *   4. All 6 JSS scenarios (including 'erratic') execute without error
+ *   4. All 6  scenarios (including 'erratic') execute without error
  *
  * Usage:  node smoke_test.js
  * Expected runtime: ~5 seconds
@@ -110,4 +110,5 @@ if (fail > 0) {
 } else {
   console.log('\nSmoke test PASSED 鈥?safe to run: node run_experiments.js');
 }
+
 

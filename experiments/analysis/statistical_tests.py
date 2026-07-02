@@ -1,5 +1,5 @@
 ﻿"""
-JSS Statistical Analysis: Mann-Whitney U + Cliff's delta
+ Statistical Analysis: Mann-Whitney U + Cliff's delta
 =========================================================
 Reads experiments/results/results_30rep.json and performs:
   1. Mann-Whitney U test (two-sided, alpha=0.05) for all pairwise comparisons
@@ -196,7 +196,7 @@ def main():
     stat_results = {}
     report_lines = []
 
-    report_lines.append("JSS Statistical Analysis Report")
+    report_lines.append(" Statistical Analysis Report")
     report_lines.append("=" * 60)
     report_lines.append("Data: experiments/results/results_30rep.json")
     report_lines.append(f"Scenarios: {all_scenarios}")
@@ -245,7 +245,7 @@ def main():
     # 鈹€鈹€ Primary comparison summary (RQ1) 鈹€鈹€
     report_lines.append(f"\n{'鈺?*60}")
     report_lines.append(f"RQ1 PRIMARY COMPARISON: {primary_scen}")
-    report_lines.append("JSS requirement: p < 0.05 AND |Cliff's 未| 鈮?0.474 (large effect)")
+    report_lines.append(" requirement: p < 0.05 AND |Cliff's 未| 鈮?0.474 (large effect)")
     report_lines.append("")
     if primary_scen in stat_results:
         for bl, r in stat_results[primary_scen].items():
@@ -285,4 +285,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

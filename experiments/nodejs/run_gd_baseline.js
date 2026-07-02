@@ -1,6 +1,6 @@
-/**
+﻿/**
  * GradientDescent Baseline Experiment Runner
- * ─────────────────────────────────────────────────────────────────────────────
+ * 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
  * Runs 30 reps of GradientDescent across 6 primary + 2 extended scenarios.
  * Uses CRN (same seed per rep index across algorithms) for fair comparison.
  * Saves to results_gd_baseline.json.
@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url';
 
 import {
   STEP_MS, DURATION_S, WARMUP_S,
-  REPEATS, JSS_BASE_SEED, CAPACITY,
+  REPEATS, _BASE_SEED, CAPACITY,
   SCENARIOS,
 } from './src/config.js';
 import { createAlgorithm } from './src/algorithms.js';
@@ -30,9 +30,9 @@ const ALL_SCENARIOS = [...SCENARIOS, 'io_mixed', 'trace_like'];
 const ALGO_NAME     = 'GradientDescent';
 const steps         = Math.floor((DURATION_S * 1000) / STEP_MS);
 
-console.log(`\nP-DARC JSS — GradientDescent Baseline`);
+console.log(`\nP-DARC  鈥?GradientDescent Baseline`);
 console.log(`Scenarios: ${ALL_SCENARIOS.join(', ')}`);
-console.log(`Reps: ${REPEATS}  |  Base seed: ${JSS_BASE_SEED}\n`);
+console.log(`Reps: ${REPEATS}  |  Base seed: ${_BASE_SEED}\n`);
 
 const allResults = {};
 
@@ -43,7 +43,7 @@ for (const scenario of ALL_SCENARIOS) {
   const { rates, interferences } = createScenario(scenario, steps);
 
   for (let r = 0; r < REPEATS; r++) {
-    const rng  = setRunSeed(JSS_BASE_SEED, r);  // CRN: same arrivals across algorithms
+    const rng  = setRunSeed(_BASE_SEED, r);  // CRN: same arrivals across algorithms
     const algo = createAlgorithm(ALGO_NAME);
     const sim  = new Simulator(algo, {
       capacityPerSec: CAPACITY, stepMs: STEP_MS,
@@ -56,7 +56,7 @@ for (const scenario of ALL_SCENARIOS) {
   const agg = aggregateRuns(rows);
   allResults[scenario] = { algorithm: ALGO_NAME, scenario, ...agg };
   process.stdout.write(
-    `p99=${agg.p99.mean.toFixed(1)}±${agg.p99.std.toFixed(1)}ms` +
+    `p99=${agg.p99.mean.toFixed(1)}卤${agg.p99.std.toFixed(1)}ms` +
     `  rej=${(agg.reject_rate.mean * 100).toFixed(1)}%` +
     `  Lmax=${agg.q_max.mean.toFixed(0)}\n`
   );
@@ -64,7 +64,8 @@ for (const scenario of ALL_SCENARIOS) {
 
 const outPath = path.join(RESULTS_DIR, 'results_gd_baseline.json');
 fs.writeFileSync(outPath, JSON.stringify({
-  meta: { algorithm: ALGO_NAME, repeats: REPEATS, base_seed: JSS_BASE_SEED, timestamp: new Date().toISOString() },
+  meta: { algorithm: ALGO_NAME, repeats: REPEATS, base_seed: _BASE_SEED, timestamp: new Date().toISOString() },
   results: allResults,
 }, null, 2));
 console.log(`\nSaved: ${outPath}`);
+

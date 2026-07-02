@@ -1,6 +1,6 @@
-/** Seeded RNG (mulberry32) + Poisson sampling
- * Full copy for JSS standalone package.
- * CRN strategy: setRunSeed(JSS_BASE_SEED, r) gives same arrivals across algorithms.
+﻿/** Seeded RNG (mulberry32) + Poisson sampling
+ * Full copy for  standalone package.
+ * CRN strategy: setRunSeed(_BASE_SEED, r) gives same arrivals across algorithms.
  */
 
 export function createRng(seed) {
@@ -29,3 +29,4 @@ export function poisson(lambda, rng) {
 export function setRunSeed(baseSeed, repeatIndex) {
   return createRng(baseSeed + repeatIndex);
 }
+
