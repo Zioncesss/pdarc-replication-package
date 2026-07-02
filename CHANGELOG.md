@@ -1,12 +1,21 @@
+﻿
+## [CCPE Version 1.0] — 2026-07-02
+
+- **Rebrand**: Remove all JSS-specific naming from files and code
+- **Rename**: 16 files — drop _jss suffix (e.g., un_experiments_jss.js → un_experiments.js)
+- **config.js**: JSS_BASE_SEED → BASE_SEED
+- **Delete**: 5 intermediate .tex tables, statistical_report.txt, __pycache__/
+- **Zenodo DOI**: Updated to https://zenodo.org/records/20481448
+- **Target journal**: Concurrency and Computation: Practice and Experience (CCPE, Wiley)
 # Changelog
 
 All notable changes to the P-DARC experiment package are documented here.
 
-## [JSS Version 1.0] — 2026-05-29
+## [JSS Version 1.0] 鈥?2026-05-29
 
 ### Added
 - **Statistical rigor upgrade**: Increased repetitions from 10 to 30 per configuration for Mann-Whitney U analysis
-- **New scenario**: `erratic` — models GC pause patterns (80% capacity oscillation every 60ms)
+- **New scenario**: `erratic` 鈥?models GC pause patterns (80% capacity oscillation every 60ms)
 - **New scenarios**: `io_mixed` (mixed CPU/I/O), `trace_like` (production-like 3-phase scenario)
 - **Ablation study**: Component contribution analysis (7 variants: P-DARC, P-DARC-noI, P-DARC-noEMA, P-DARC-staticL, + baselines)
 - **Extended baselines**: Gradient Descent algorithm comparison
@@ -23,7 +32,7 @@ All notable changes to the P-DARC experiment package are documented here.
 - **Reproducibility**: `run_meta_jss.json` for experiment metadata logging
 
 ### Changed
-- **JSS_BASE_SEED**: 42 → 1000 (avoids seed-space overlap with paper_v2)
+- **JSS_BASE_SEED**: 42 鈫?1000 (avoids seed-space overlap with paper_v2)
 - **Config module**: All 30 P-DARC parameters now explicitly listed with comments
 - **Experiment runner**: `run_experiments_jss.js` replaces paper_v2 version
   - Structured exception handling
@@ -36,10 +45,10 @@ All notable changes to the P-DARC experiment package are documented here.
 
 ### Fixed
 - **CRN correctness**: Verified that `setRunSeed(baseSeed, repeatIndex)` produces identical arrivals across algorithms
-- **HTTP step order**: Ensured admit → dequeue → update mirrors simulator exactly
+- **HTTP step order**: Ensured admit 鈫?dequeue 鈫?update mirrors simulator exactly
 - **Interference model**: Consistent capacity reduction across simulator and HTTP server
 - **Statistical tests**: Added data validation to catch malformed results before analysis
-- **Recovery time calculation**: Refined baseline detection (t=30-40s) and target threshold (1.5×baseline)
+- **Recovery time calculation**: Refined baseline detection (t=30-40s) and target threshold (1.5脳baseline)
 
 ### Removed
 - Duplicate algorithm implementations (HTTP server now imports from nodejs/src/)
@@ -57,17 +66,17 @@ All notable changes to the P-DARC experiment package are documented here.
 #### Reproducibility Guarantees
 - Mulberry32 RNG implemented inline (no external RNG library)
 - Poisson sampling: standard rejection sampling algorithm
-- Deterministic step order: arrival → admission → dequeue → update
-- CRN: same `repeatIndex` → same Poisson seed → same arrival sequence across all algorithms within a scenario
+- Deterministic step order: arrival 鈫?admission 鈫?dequeue 鈫?update
+- CRN: same `repeatIndex` 鈫?same Poisson seed 鈫?same arrival sequence across all algorithms within a scenario
 
 #### Statistical Correctness
-- Mann-Whitney U test: two-sided, α=0.05 (scipy.stats.mannwhitneyu)
-- Cliff's delta: |d| ∈ [-1, 1], threshold interpretation per Romano et al. (2006)
-- 95% CI: normal approximation (valid for n=30), mean ± 1.96·SE
+- Mann-Whitney U test: two-sided, 伪=0.05 (scipy.stats.mannwhitneyu)
+- Cliff's delta: |d| 鈭?[-1, 1], threshold interpretation per Romano et al. (2006)
+- 95% CI: normal approximation (valid for n=30), mean 卤 1.96路SE
 
 ### Testing
 - `npm run smoke`: 18 checks, <5 seconds
-- `npm test`: 30 reps × 6 scenarios × 5 algorithms, ~50 seconds
+- `npm test`: 30 reps 脳 6 scenarios 脳 5 algorithms, ~50 seconds
 - `npm run all`: full suite (smoke + main + ablation + new-scenarios + http), ~5 minutes
 - `python statistical_tests.py`: validates data, computes statistics, generates LaTeX tables
 
@@ -93,12 +102,12 @@ experiments/http/
 experiments/analysis/
   - statistical_tests.py (new; Mann-Whitney U, Cliff's delta, LaTeX tables)
   - generate_latex_tables.py (new; LaTeX table generation)
-  - requirements.txt (scipy≥1.10.0, numpy≥1.24.0, pandas≥2.0.0)
+  - requirements.txt (scipy鈮?.10.0, numpy鈮?.24.0, pandas鈮?.0.0)
 experiments/results/
   - results_jss_30rep.json (30 reps per config)
   - results_jss_summary.json (aggregated, no raw arrays)
   - results_gd_baseline.json (Gradient Descent results)
-  - ablation_jss_30rep.json (7 variants × scenarios)
+  - ablation_jss_30rep.json (7 variants 脳 scenarios)
   - results_http_experiment.json (HTTP ranking validation)
   - stat_results.json (Mann-Whitney U outputs)
   - sig_table_heavy.tex (LaTeX: RQ1 primary comparison)
@@ -123,19 +132,19 @@ Root:
 - Pure async I/O workloads remain future work
 
 ### Breaking Changes
-- **JSS_BASE_SEED changed** (42 → 1000): Results not directly comparable to paper_v2
+- **JSS_BASE_SEED changed** (42 鈫?1000): Results not directly comparable to paper_v2
 - **Metrics output format**: Now includes .raw arrays (backward compatible via .mean, .std)
-- **Requires Node.js ≥18** (uses ES modules)
+- **Requires Node.js 鈮?8** (uses ES modules)
 
 ### Backward Compatibility
-- ✅ Paper v2 baseline results preserved in comments/documentation
-- ✅ Same core algorithms (Fixed Backpressure, AIMD, PIE, P-DARC)
-- ✅ Same parameter values (P-DARC α=0.2, β=1.0, etc.)
-- ✅ Manual comparison possible by rerunning with paper_v2 seed (42)
+- 鉁?Paper v2 baseline results preserved in comments/documentation
+- 鉁?Same core algorithms (Fixed Backpressure, AIMD, PIE, P-DARC)
+- 鉁?Same parameter values (P-DARC 伪=0.2, 尾=1.0, etc.)
+- 鉁?Manual comparison possible by rerunning with paper_v2 seed (42)
 
 ---
 
-## [Paper v2 Version] — (baseline, for reference)
+## [Paper v2 Version] 鈥?(baseline, for reference)
 
 Version used in the paper submission (10 reps, 5 core scenarios, basic statistics).
 Not directly comparable to JSS version due to different seed and repetition count.
@@ -150,3 +159,4 @@ Potential enhancements (not planned for JSS):
 - [ ] Distributed testing framework (cross-region validation)
 - [ ] Interactive dashboard (live experiment monitoring)
 - [ ] Extended baselines (ML-based rate control methods)
+
